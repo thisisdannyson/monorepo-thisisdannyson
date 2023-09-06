@@ -2,9 +2,9 @@
 
 # Monorepo
 
-- [ ] *Your Name Here*
+- [ ] *Danny Son*
   - **(TODO: Change this heading to your name, because your github name is often not your real name)**
-- [ ] *[Phonetic spelling](https://dictionary.cambridge.org/us/help/phonetics.html) of your name here* **(TODO: Change this)**
+- [ ] *DAN-EE SON* [(https://dictionary.cambridge.org/us/help/phonetics.html) of your name here* 
 
 ## Important Documents 
 
