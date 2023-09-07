@@ -3,7 +3,6 @@
 # Monorepo
 
 - [ ] Name: *Danny Son*
-  - **(TODO: Change this heading to your name, because your github name is often not your real name)**
 - [ ] Phonetic Spelling: *DAN-EE SON* 
 ## Important Documents 
 
