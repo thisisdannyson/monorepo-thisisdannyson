@@ -1,12 +1,25 @@
 // Compile with:
 // g++ -std=c++17 pointers.cpp -o prog
 #include <iostream>
+using namespace std;
 
 int main(){
 
   // Pointers can be tricky.
   // 
   // Feel free to use tools like valgrind and gdb to help you debug.
+  int* px = nullptr;
+
+  int x = 100;
+  px = &x;
+
+  cout << "px deref is = " << *px << endl;
+ 
+  *px = 200;
+  
+  cout << "px deref is = " << *px << endl;
+
+
 
 	return 0;
 }

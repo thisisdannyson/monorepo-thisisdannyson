@@ -2,6 +2,23 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+class PPM {
+public:
+
+    PPM(unsigned int width, unsigned int height){
+        pixelData = new unsigned char[width*height*3];
+    }
+
+    ~PPM(){
+        delete[] pixelData;
+        cout << "destroying pixelData" << endl;
+    }
+
+private:
+    uint8_t* pixelData;
+};
+
 
 int main(int argc, char** argv){
 
@@ -15,6 +32,8 @@ int main(int argc, char** argv){
     //
     //
     // Anyway, at this point you know most of the C++ you'll need to get you through the course.
+
+    PPM myPPM(64,200);
 
     return 0;
 }
