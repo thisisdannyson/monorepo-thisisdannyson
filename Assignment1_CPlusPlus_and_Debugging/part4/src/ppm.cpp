@@ -1,9 +1,56 @@
 #include "PPM.hpp"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
+using namespace std;
+
+
+void setDimensions(string line, int* m_width, int* m_height) {
+    stringstream stream(line);
+    string width;
+    string height;
+    stream >> width;
+    stream >> height;
+    *m_width = stoi(width);
+    *m_height = stoi(height);
+}
+
+
+void parseLine(vector<int>* pixelData, string line) {
+    stringstream stream(line);
+
+    string chunk;
+    while (stream >> chunk) {
+        pixelData->push_back(stoi(chunk));
+    }
+}
 
 // Constructor loads a filename with the .ppm extension
-PPM::PPM(std::string fileName){
-    // TODO:    Load and parse a ppm to get its pixel
-    //          data stored properly.
+PPM::PPM(std::string fileName) {
+    fstream file;
+    file.open(fileName);
+
+    if (file.is_open()) {
+        string line;
+        bool retrievedDimensions = false;
+        // skip first line -> assume its always P3
+        getline(file, line);
+
+        while (getline(file, line)) {
+            //disregard comments
+            if (line[0] == '#') {
+                continue;
+            }
+            // check if we have retrieved dimensions yet if not parse it
+            if (!retrievedDimensions) {
+                setDimensions(line, &m_width, &m_height);
+                retrievedDimensions = true; 
+            } else {
+                parseLine(&m_PixelData, line);
+            }
+        }
+    }
 }
 
 // Destructor deletes(delete or delete[]) any memory that has been allocated
