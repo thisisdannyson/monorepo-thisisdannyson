@@ -28,7 +28,7 @@ void parseLine(vector<int>* pixelData, string line) {
 
 // Constructor loads a filename with the .ppm extension
 PPM::PPM(std::string fileName) {
-    fstream file;
+    ifstream file;
     file.open(fileName);
 
     if (file.is_open()) {
@@ -51,18 +51,29 @@ PPM::PPM(std::string fileName) {
             }
         }
     }
+    file.close();
 }
 
 // Destructor deletes(delete or delete[]) any memory that has been allocated
 // or otherwise calls any 'shutdown' or 'destroy' routines for this deletion
 // to occur.
 PPM::~PPM(){
-    
+    m_PixelData.clear();
 }
 
 // Saves a PPM Image to a new file.
 void PPM::savePPM(std::string outputFileName) const {
-    // TODO: Save a PPM image to disk
+    ofstream outFile;
+    outFile.open(outputFileName);
+
+    //write header
+    outFile << "P3" << endl;
+    //write dimensions of ppm file
+    outFile << m_width << " " << m_height << endl;
+    for (int i = 0; i < m_PixelData.size(); i++) {
+        outFile << m_PixelData.at(i) << endl;
+    }
+    outFile.close();
 }
 
 // Darken halves (integer division by 2) each of the red, green
@@ -74,10 +85,6 @@ void PPM::darken(){
         int pixelValue = m_PixelData.at(i);
         m_PixelData.at(i) = pixelValue == 0 ? 0 : pixelValue / 2;
     }
-
-    for (int i = 0; i < 11; i++) {
-        cout << "value after darkening is: " << m_PixelData.at(i) << endl;
-    }
 }
 
 // Lighten doubles (integer multiply by 2) each of the red, green
@@ -88,10 +95,6 @@ void PPM::lighten(){
     for (int i = 0; i < m_PixelData.size(); i++) {
         int pixelValue = m_PixelData.at(i);
         m_PixelData.at(i) = pixelValue * 2 > 255 ? 255 : pixelValue * 2;
-    }
-
-    for (int i = 0; i < 11; i++) {
-        cout << "value after lightening is: " << m_PixelData.at(i) << endl;
     }
 }
 
