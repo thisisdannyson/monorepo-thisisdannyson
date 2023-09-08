@@ -57,7 +57,7 @@ PPM::PPM(std::string fileName) {
 // or otherwise calls any 'shutdown' or 'destroy' routines for this deletion
 // to occur.
 PPM::~PPM(){
-    // TODO: Reclaim any allocated memory
+    
 }
 
 // Saves a PPM Image to a new file.
@@ -70,7 +70,14 @@ void PPM::savePPM(std::string outputFileName) const {
 // in the PPM. Note that no values may be less than
 // 0 in a ppm.
 void PPM::darken(){
-    // TODO: Output a 'filtered' PPM image.
+    for (int i = 0; i < m_PixelData.size(); i++) {
+        int pixelValue = m_PixelData.at(i);
+        m_PixelData.at(i) = pixelValue == 0 ? 0 : pixelValue / 2;
+    }
+
+    for (int i = 0; i < 11; i++) {
+        cout << "value after darkening is: " << m_PixelData.at(i) << endl;
+    }
 }
 
 // Lighten doubles (integer multiply by 2) each of the red, green
@@ -78,7 +85,14 @@ void PPM::darken(){
 // in the PPM. Note that no values may be greater than
 // 255 in a ppm.
 void PPM::lighten(){
-    // TODO: Output a 'filtered' PPM image.
+    for (int i = 0; i < m_PixelData.size(); i++) {
+        int pixelValue = m_PixelData.at(i);
+        m_PixelData.at(i) = pixelValue * 2 > 255 ? 255 : pixelValue * 2;
+    }
+
+    for (int i = 0; i < 11; i++) {
+        cout << "value after lightening is: " << m_PixelData.at(i) << endl;
+    }
 }
 
 // Sets a pixel to a specific R,G,B value 
