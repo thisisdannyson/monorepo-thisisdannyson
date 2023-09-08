@@ -3,13 +3,14 @@
  *  
  *  Class for working with P3 PPM images specifically.
  *
- *  @author your_name_here
+ *  @author Danny Son
  *  @bug No known bugs.
  */
 #ifndef PPM_HPP
 #define PPM_HPP
 
 #include <string>
+#include <vector>
 
 class PPM{
 public:
@@ -39,7 +40,7 @@ public:
     // In brief, 'const' gaureentees that we are not modifying 
     // any member variables in a class, and this is useful if we are
     // returning private member variables.
-    inline unsigned char* pixelData() const { return m_PixelData; }
+    inline std::vector<int> pixelData() const { return m_PixelData; }
     // Returns image width
     inline int getWidth() const { return m_width; }
     // Returns image height
@@ -51,7 +52,7 @@ private:
     // Data is R,G,B format
     // Note: Yes, you are allowed to replace 'uint8_t* m_PixelDatal' with a std::vector<uint8_t> m_PixelData.
     //       In fact, using a std::vector will likely make your life easier.    
-    uint8_t* m_PixelData;
+    std::vector<int> m_PixelData;
     // Store width and height of image.
     int m_width{0};
     int m_height{0};
